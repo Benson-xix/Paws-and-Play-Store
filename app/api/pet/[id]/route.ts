@@ -1,24 +1,27 @@
-import { } from "next";
+
 import connect from "@/Utils/database";
 import Pet from "@/models/Pet";
+import { getServerSession } from "next-auth";
 
 
-type CustomRequest = Request & {
-  query: {
-    _id: string;
-  };
-};
 
-export default async function DELETE(req: CustomRequest) {
-  const _id = req.query._id;
 
-  await connect();
+export  async function DELETE(request: Request , { params }: { params: { id: string } }) {
+    
 
-  const pet = await Pet.findByIdAndDelete(_id);
+    const session = await getServerSession();
 
-  if (!pet) {
-    return new Response("Pet not found", { status: 404 });
-  }
 
-  return Response.json(pet);
+
+    if (!session) {
+      return new Response( "Unauthorized", { status: 401 });
+    }
+  
+    await connect();
+
+    const pet = await  Pet.findOneAndDelete({ _id: params.id,});
+
+    return new Response(JSON.stringify(pet), { status: 200 });
+    
+
 }
