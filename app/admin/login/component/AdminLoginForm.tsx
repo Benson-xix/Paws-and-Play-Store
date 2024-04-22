@@ -16,11 +16,7 @@ const AdminLoginForm = () => {
   const [error, setError] = useState('');
   const session = useSession();
 
-  // useEffect(() => {
-  //   if(session?.status === "authenticated") {
-  //     router.replace("/admin/dashboard",)
-  //   }
-  // }, [session, router]);
+  
 
   const isValidEmail = (email: string) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
