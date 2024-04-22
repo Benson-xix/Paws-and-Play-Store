@@ -1,37 +1,24 @@
-import { NextApiRequest } from "next";
+import { } from "next";
 import connect from "@/Utils/database";
-import Pet, { IPet } from "@/models/Pet";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import Pet from "@/models/Pet";
 
 
+type CustomRequest = Request & {
+  query: {
+    _id: string;
+  };
+};
 
-
-
-
-export  async function DELETE( req: NextApiRequest) {
-  const {
-    query: { id },
-  } = req
-
-  const session = await getServerSession();
-
-  if (!session) {
-    return new Response( "Unauthorized", { status: 401 });
-
-  }
+export default async function DELETE(req: CustomRequest) {
+  const _id = req.query._id;
 
   await connect();
 
-  const pet = await Pet.findByIdAndDelete(id as string);
+  const pet = await Pet.findByIdAndDelete(_id);
 
   if (!pet) {
-    return new Response('Pet not found', { status: 404 });
+    return new Response("Pet not found", { status: 404 });
   }
 
-
   return Response.json(pet);
-
-
-
 }
