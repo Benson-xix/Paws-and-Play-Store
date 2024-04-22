@@ -79,7 +79,7 @@ const AdminLoginForm = () => {
                 <input
                   type="text"
                   required
-                  className="w-full h-[50px] rounded-md p-2 outline-orange-300"
+                 className="w-full h-[50px]  text-gray-900  outline-orange-300 rounded-md p-2"
                 />
               </div>
               <div className="flex flex-col gap-4 md:w-1/2 w-full">
@@ -87,7 +87,7 @@ const AdminLoginForm = () => {
                 <input
                   type="password"
                   required
-                  className="w-full h-[50px] rounded-md p-2"
+                 className="w-full h-[50px]  text-gray-900  outline-orange-300 rounded-md p-2"
                 />
               </div>
               {/* <h3>
