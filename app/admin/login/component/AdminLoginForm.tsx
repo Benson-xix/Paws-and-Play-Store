@@ -63,7 +63,7 @@ const AdminLoginForm = () => {
     if(session?.status === "authenticated") {
       router.replace("/admin/dashboard",)
     }
-  }, [session, router]);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col font-mono gap-3 bg-teal-200">
