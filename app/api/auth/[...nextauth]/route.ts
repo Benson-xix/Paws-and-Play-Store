@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import connect from "@/Utils/database";
 
 
-export const authOptions: AuthOptions = {
+ const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             id: "credentials",
