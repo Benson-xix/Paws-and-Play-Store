@@ -22,9 +22,13 @@ const AdminLoginForm = () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(email);
   }
+useEffect(() => {
+    if(session?.status === "authenticated") {
+      router.replace("/admin/dashboard",)
+    }
+  }, [router]);
 
-
-  const handleSubmit = async (e:any ) => {
+    const handleSubmit = async (e:any ) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
@@ -38,28 +42,26 @@ const AdminLoginForm = () => {
       return;
     }
 
+    console.log(session, router);
 
-    const res = await signIn ("credentials", {
+ signIn("credentials", {
       redirect: false,
       email,
       password
+    }).then ((callback) => {
+      if (callback?.ok) {
+        router.replace("/admin/dashboard");
+        toast.success("Logged in");
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
     })
 
-    if(res?.error) {
-      setError("inavalid email or password");
-      if(res?.url) router.replace("/admin/dashboard");
-      return;
-    } else {
-      setError("");
-    }
 
-  } 
-
-  useEffect(() => {
-    if(session?.status === "authenticated") {
-      router.replace("/admin/dashboard",)
-    }
-  }, []);
+  }
+  
 
   return (
     <div className="flex min-h-screen flex-col font-mono gap-3 bg-teal-200">
