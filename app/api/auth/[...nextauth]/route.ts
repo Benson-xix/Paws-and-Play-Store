@@ -53,19 +53,20 @@ import connect from "@/Utils/database";
 }
 
 
+export const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST};
 
 
+// export async function POST( req: Request) {
+//     await NextAuth( authOptions);
+//     return Response.json({ message: "Authentication successful" });
+// }
 
-export async function POST( req: Request) {
-    await NextAuth( authOptions);
-    return Response.json({ message: "Authentication successful" });
-}
 
-
-export async function GET( req: Request) {
-    await NextAuth( authOptions);
-    return Response.json({ message: "Authentication successful" });
-}
+// export async function GET( req: Request) {
+//     await NextAuth( authOptions);
+//     return Response.json({ message: "Authentication successful" });
+// }
 
 
 
