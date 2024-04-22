@@ -9,8 +9,8 @@ import { NextResponse } from "next/server";
 
 
 
-export  async function DELETE({ params }: { params: { _id: string } }) {
-  
+export  async function DELETE(req: NextApiRequest,) {
+  const { _id } = req.query;
 
   const session = await getServerSession();
 
@@ -21,7 +21,8 @@ export  async function DELETE({ params }: { params: { _id: string } }) {
 
   await connect();
 
-  const pet = await  Pet.findOneAndDelete({ _id: params._id,});
+  const pet = await Pet.findOneAndDelete({ _id });
+
 
 
 
