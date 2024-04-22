@@ -9,8 +9,10 @@ import { NextResponse } from "next/server";
 
 
 
-export  async function DELETE(req: NextApiRequest,) {
-  const { _id } = req.query;
+export  async function DELETE( req: NextApiRequest) {
+  const {
+    query: { id },
+  } = req
 
   const session = await getServerSession();
 
@@ -21,9 +23,11 @@ export  async function DELETE(req: NextApiRequest,) {
 
   await connect();
 
-  const pet = await Pet.findOneAndDelete({ _id });
+  const pet = await Pet.findByIdAndDelete(id as string);
 
-
+  if (!pet) {
+    return new Response('Pet not found', { status: 404 });
+  }
 
 
   return Response.json(pet);
