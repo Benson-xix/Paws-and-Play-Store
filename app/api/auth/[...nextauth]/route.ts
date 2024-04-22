@@ -53,9 +53,10 @@ import connect from "@/Utils/database";
 }
 
 
-export const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST};
-
+// export const handler = NextAuth(authOptions);
+// export { handler as GET, handler as POST};
+export const POST = NextAuth(authOptions);
+export const GET = NextAuth(authOptions);
 
 // export async function POST( req: Request) {
 //     await NextAuth( authOptions);
