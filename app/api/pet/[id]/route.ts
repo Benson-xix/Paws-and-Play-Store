@@ -9,7 +9,7 @@ import { NextResponse } from "next/server";
 
 
 
-export  async function Delete( request: NextApiRequest, { params }: { params: { _id: string } }) {
+export  async function DELETE( request: NextApiRequest, { params }: { params: { _id: string } }) {
   
 
   const session = await getServerSession();
