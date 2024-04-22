@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import {Account, User as AuthUser} from "next-auth"
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import connect from "@/Utils/database";
 
 
-export const authOptions:any = {
+export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             id: "credentials",
@@ -46,9 +46,14 @@ export const authOptions:any = {
         }),
 
     ],
+
+
+    debug: process.env.NODE_ENV === 'development',
+    secret: process.env.NEXTAUTH_SECRET
 }
 
 
 export const handler = NextAuth(authOptions);
 export const GET = handler;
 export const POST = handler;
+
