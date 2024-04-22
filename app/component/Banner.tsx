@@ -22,7 +22,7 @@ const Banner = () => {
 
         <div className=" lg:w-1/3 w-full relative aspect-video">
           <Image
-            src="/PetBanner.PNG"
+            src="/pet-shop-banner-design-template-cartoon-illustration-of-cats-dogs-house-food-vector.jpg"
             alt="PetBanner"
             width={300}
             height={300}
