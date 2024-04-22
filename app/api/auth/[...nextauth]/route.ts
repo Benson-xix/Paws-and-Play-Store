@@ -55,7 +55,17 @@ export const authOptions: AuthOptions = {
 
 
 
-export const handler = NextAuth(authOptions);
-export const GET = handler;
-export const POST = handler;
+
+export async function POST( req: Request) {
+    await NextAuth( authOptions);
+    return Response.json({ message: "Authentication successful" });
+}
+
+
+export async function GET( req: Request) {
+    await NextAuth( authOptions);
+    return Response.json({ message: "Authentication successful" });
+}
+
+
 
