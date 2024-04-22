@@ -9,13 +9,14 @@ import { NextResponse } from "next/server";
 
 
 
-export  async function DELETE( request: NextApiRequest, { params }: { params: { _id: string } }) {
+export  async function DELETE({ params }: { params: { _id: string } }) {
   
 
   const session = await getServerSession();
 
   if (!session) {
-    return NextResponse.error();
+    return new Response( "Unauthorized", { status: 401 });
+
   }
 
   await connect();
@@ -24,7 +25,7 @@ export  async function DELETE( request: NextApiRequest, { params }: { params: { 
 
 
 
-  return NextResponse.json(pet);
+  return Response.json(pet);
 
 
 
